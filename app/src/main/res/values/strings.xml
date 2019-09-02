@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Bikes</string>
+
+    <!--Menu actions-->
+    <string name="action_settings">Settings</string>
+
+    <!--Bikes Map-->
+    <string name="bikes_map_location_permission_request">To find bikes nearby you, allow access fine location in App Permission Settings.</string>
+</resources>
