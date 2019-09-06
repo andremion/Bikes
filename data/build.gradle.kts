@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -16,6 +18,16 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility = Versions.Compiling.java
+        targetCompatibility = Versions.Compiling.java
+    }
+
+    kotlinOptions {
+        this as KotlinJvmOptions
+        jvmTarget = Versions.Compiling.java.toString()
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -32,6 +44,7 @@ android.buildTypes.forEach { type ->
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
+    implementation(kotlin("stdlib-jdk8", Versions.Compiling.kotlin))
     implementation("androidx.appcompat:appcompat:${Versions.Jetpack.appcompat}")
     implementation("com.squareup.okhttp3:logging-interceptor:${Versions.Networking.okHttp}")
     implementation("com.squareup.retrofit2:retrofit:${Versions.Networking.retrofit}")

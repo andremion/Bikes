@@ -4,6 +4,7 @@ object Versions {
     object Compiling {
         val java = JavaVersion.VERSION_1_8
         const val kotlin = "1.3.41"
+        const val coroutines = "1.3.1"
     }
 
     object Building {
@@ -22,16 +23,14 @@ object Versions {
         const val mockito = "2.1.0"
         const val runner = "1.2.0"
         const val espresso = "3.2.0"
-        const val archComponents = "2.1.0-rc01"
+        const val archComponents = "2.1.0"
     }
 
     object Jetpack {
-        const val appcompat = "1.0.2"
-        const val core = "1.0.2"
-        const val fragment = "2.0.0"
+        const val appcompat = "1.1.0"
+        const val core = "1.1.0"
         const val navigation = "2.0.0"
-        const val viewmodel = "2.1.0-rc01"
-        const val livedata = "2.2.0-alpha02"
+        const val lifecycle = "2.2.0-alpha03"
     }
 
     object PlayServices {
@@ -59,5 +58,3 @@ object Application {
     const val versionCode = 1
     const val versionName = "1.0.0"
 }
-
-

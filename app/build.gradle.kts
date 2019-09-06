@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -16,6 +18,16 @@ android {
         versionCode = Application.versionCode
         versionName = Application.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility = Versions.Compiling.java
+        targetCompatibility = Versions.Compiling.java
+    }
+
+    kotlinOptions {
+        this as KotlinJvmOptions
+        jvmTarget = Versions.Compiling.java.toString()
     }
 
     buildTypes {
@@ -37,13 +49,13 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":data"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.Compiling.kotlin}")
+    implementation(kotlin("stdlib-jdk8", Versions.Compiling.kotlin))
     implementation("androidx.appcompat:appcompat:${Versions.Jetpack.appcompat}")
     implementation("androidx.core:core-ktx:${Versions.Jetpack.core}")
-    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.Jetpack.fragment}")
+    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.Jetpack.navigation}")
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.Jetpack.navigation}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Jetpack.viewmodel}")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Jetpack.livedata}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Jetpack.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Jetpack.lifecycle}")
     implementation("org.koin:koin-android:${Versions.DependencyInjection.koin}")
     implementation("org.koin:koin-android-viewmodel:${Versions.DependencyInjection.koin}")
     implementation("com.google.android.gms:play-services-maps:${Versions.PlayServices.map}")
