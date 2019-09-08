@@ -84,7 +84,17 @@ class BikesMapFragment : SupportMapFragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        this.googleMap = googleMap.withInitialSetup()
+        this.googleMap = googleMap.withInitialSetup().also {
+            it.onCameraMoveToZoomLevel(
+                zoomLevel = MapZoomLevel.STREETS,
+                onMoveIn = { zoomLevel ->
+                    Log.d("GoogleMap", "Moved in: $zoomLevel")
+                },
+                onMoveOut = { zoomLevel ->
+                    Log.d("GoogleMap", "Moved out: $zoomLevel")
+                }
+            )
+        }
 
         viewModel.findNetworks()
 
@@ -107,6 +117,29 @@ private fun GoogleMap.withInitialSetup() = apply {
     uiSettings.isZoomGesturesEnabled = true
     uiSettings.isMyLocationButtonEnabled = false
     isMyLocationEnabled = false
+}
+
+private fun GoogleMap.onCameraMoveToZoomLevel(
+    zoomLevel: MapZoomLevel,
+    onMoveIn: (zoomLevel: Float) -> Unit,
+    onMoveOut: (zoomLevel: Float) -> Unit
+) {
+    setOnCameraMoveListener(object : GoogleMap.OnCameraMoveListener {
+
+        private var isInRange = false
+
+        override fun onCameraMove() {
+            if (zoomLevel.inRange(cameraPosition.zoom)) {
+                if (!isInRange) {
+                    isInRange = true
+                    onMoveIn(cameraPosition.zoom)
+                }
+            } else if (isInRange) {
+                isInRange = false
+                onMoveOut(cameraPosition.zoom)
+            }
+        }
+    })
 }
 
 private fun GoogleMap.enableMyLocation() {

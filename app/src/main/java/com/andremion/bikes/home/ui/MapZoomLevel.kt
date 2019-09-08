@@ -9,4 +9,6 @@ enum class MapZoomLevel(private val level: Float) {
             if (level > max) max else level
         } else min
     }
+
+    fun inRange(level: Float) = level >= this.level
 }
