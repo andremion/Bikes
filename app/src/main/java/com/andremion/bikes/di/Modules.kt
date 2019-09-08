@@ -9,6 +9,7 @@ import com.andremion.bikes.data.remote.api.CityBikeService
 import com.andremion.bikes.home.presentation.BikesContract.ViewState
 import com.andremion.bikes.home.presentation.BikesProcessor
 import com.andremion.bikes.home.presentation.BikesReducer
+import com.andremion.bikes.home.presentation.BikesUdfDispatcher
 import com.andremion.bikes.home.presentation.BikesViewModel
 import com.andremion.bikes.udf.UdfDispatcherImpl
 import org.koin.android.viewmodel.dsl.viewModel
@@ -18,7 +19,7 @@ val homeModule = module {
 
     viewModel { BikesViewModel(get()) }
 
-    factory {
+    factory<BikesUdfDispatcher> {
         UdfDispatcherImpl(
             get<BikesProcessor>(),
             get<BikesReducer>(),
