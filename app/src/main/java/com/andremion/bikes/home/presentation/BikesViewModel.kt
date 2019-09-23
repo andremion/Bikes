@@ -1,8 +1,8 @@
 package com.andremion.bikes.home.presentation
 
 import com.andremion.bikes.home.presentation.BikesContract.Action
-import com.andremion.bikes.home.presentation.BikesContract.ViewEffect
 import com.andremion.bikes.home.presentation.BikesContract.Result
+import com.andremion.bikes.home.presentation.BikesContract.ViewEffect
 import com.andremion.bikes.home.presentation.BikesContract.ViewState
 import com.andremion.bikes.udf.UdfDispatcher
 import com.andremion.bikes.udf.UdfViewModel
@@ -15,5 +15,9 @@ class BikesViewModel(
 
     fun findNetworks() {
         submit(Action.FindNetworks)
+    }
+
+    fun getNetworkById(id: String) {
+        submit(Action.GetNetworkById(id))
     }
 }

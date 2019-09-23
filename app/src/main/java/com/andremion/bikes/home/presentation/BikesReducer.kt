@@ -18,6 +18,11 @@ class BikesReducer : UdfReducer<ViewState, Result> {
                 networks = result.networks,
                 error = null
             )
+            is Result.SetStations -> currentState.copy(
+                loading = false,
+                stations = result.stations,
+                error = null
+            )
             is Result.SetError -> currentState.copy(
                 loading = false,
                 networks = emptyList(),

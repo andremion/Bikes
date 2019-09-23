@@ -1,16 +1,19 @@
 package com.andremion.bikes.home.presentation
 
 import com.andremion.bikes.data.entity.Network
+import com.andremion.bikes.data.entity.Station
 
 object BikesContract {
 
     sealed class Action {
         object FindNetworks : Action()
+        data class GetNetworkById(val id: String) : Action()
     }
 
     sealed class Result {
         object SetLoading : Result()
         data class SetNetworks(val networks: List<Network>) : Result()
+        data class SetStations(val stations: List<Station>) : Result()
         data class SetError(val error: String?) : Result()
     }
 
@@ -21,12 +24,14 @@ object BikesContract {
     data class ViewState(
         val loading: Boolean,
         val networks: List<Network>,
+        val stations: List<Station>,
         val error: String?
     ) {
         companion object {
             val INITIAL = ViewState(
                 loading = false,
                 networks = emptyList(),
+                stations = emptyList(),
                 error = null
             )
         }

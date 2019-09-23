@@ -14,7 +14,8 @@ class BikesProcessor(
 
     override fun invoke(action: Action): LiveData<Result> =
         when (action) {
-            Action.FindNetworks -> findNetworks()
+            is Action.FindNetworks -> findNetworks()
+            is Action.GetNetworkById -> getNetworkById(action.id)
         }
 
     private fun findNetworks(): LiveData<Result> = liveData {
@@ -22,6 +23,16 @@ class BikesProcessor(
         try {
             val networks = bikesRepository.findNetworks()
             emit(Result.SetNetworks(networks))
+        } catch (e: Exception) {
+            emit(Result.SetError(e.message))
+            trigger(ViewEffect.ShowError(e.message ?: ""))
+        }
+    }
+
+    private fun getNetworkById(id: String): LiveData<Result> = liveData {
+        try {
+            val network = bikesRepository.getNetworkById(id)
+            emit(Result.SetStations(network.stations))
         } catch (e: Exception) {
             emit(Result.SetError(e.message))
             trigger(ViewEffect.ShowError(e.message ?: ""))
