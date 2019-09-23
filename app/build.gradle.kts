@@ -63,9 +63,8 @@ dependencies {
     implementation("com.karumi:dexter:${Versions.Utils.dexter}")
 
     testImplementation("junit:junit:${Versions.Testing.junit}")
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.Testing.mockito}")
+    testImplementation("io.mockk:mockk:${Versions.Testing.mockk}")
     testImplementation("androidx.arch.core:core-testing:${Versions.Testing.archComponents}")
 
-    androidTestImplementation("androidx.test:runner:${Versions.Testing.runner}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Testing.espresso}")
 }

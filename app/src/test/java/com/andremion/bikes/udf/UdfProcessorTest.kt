@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import io.mockk.Called
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Rule
 import org.junit.Test
 
@@ -29,24 +29,24 @@ class UdfProcessorTest {
 
     @Test
     fun `when start observing, should emit no effect`() {
-        val observer = mock<Observer<ViewEffect>>()
+        val observer = mockk<Observer<ViewEffect>>()
 
         processor.effects.observeForever(observer)
 
-        verifyNoMoreInteractions(observer)
+        verify { observer wasNot Called }
     }
 
     @Test
     fun `when trigger effects, should have effects emitted`() {
-        val observer = mock<Observer<ViewEffect>>()
+        val observer = mockk<Observer<ViewEffect>>(relaxed = true)
         processor.effects.observeForever(observer)
 
         val firstEmission = ViewEffect()
         processor.emit(firstEmission)
-        verify(observer).onChanged(firstEmission)
+        verify { observer.onChanged(firstEmission) }
 
         val secondEmission = ViewEffect()
         processor.emit(secondEmission)
-        verify(observer).onChanged(secondEmission)
+        verify { observer.onChanged(secondEmission) }
     }
 }
