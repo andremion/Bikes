@@ -20,8 +20,8 @@ object Versions {
 
     object Testing {
         const val junit = "4.12"
-        const val mockito = "2.1.0"
-        const val runner = "1.2.0"
+        const val mockk = "1.9.3"
+        const val truth = "1.2.0"
         const val espresso = "3.2.0"
         const val archComponents = "2.1.0"
     }

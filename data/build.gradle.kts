@@ -53,7 +53,6 @@ dependencies {
     implementation("com.google.code.gson:gson:${Versions.Networking.gson}")
 
     testImplementation("junit:junit:${Versions.Testing.junit}")
-
-    androidTestImplementation("androidx.test:runner:${Versions.Testing.runner}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Testing.espresso}")
+    testImplementation("androidx.test.ext:truth:${Versions.Testing.truth}")
+    testImplementation("io.mockk:mockk:${Versions.Testing.mockk}")
 }
