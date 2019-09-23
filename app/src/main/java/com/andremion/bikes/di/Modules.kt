@@ -2,7 +2,6 @@ package com.andremion.bikes.di
 
 import com.andremion.bikes.data.BikesRepository
 import com.andremion.bikes.data.BuildConfig
-import com.andremion.bikes.data.local.BikesLocalDataSource
 import com.andremion.bikes.data.remote.BikesRemoteDataSource
 import com.andremion.bikes.data.remote.api.CityBikeApi
 import com.andremion.bikes.data.remote.api.CityBikeService
@@ -31,8 +30,7 @@ val homeModule = module {
 }
 
 val dataModule = module {
-    factory { BikesRepository(get(), get()) }
+    factory { BikesRepository(get()) }
     factory { BikesRemoteDataSource(get()) }
     factory<CityBikeService> { CityBikeApi(BuildConfig.API_URL) }
-    factory { BikesLocalDataSource() }
 }
