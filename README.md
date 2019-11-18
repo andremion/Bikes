@@ -1,5 +1,15 @@
+<img alt="Icon" src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
+
 # Bikes
 A sample of Unidirectional Data Flow usage.
+
+</br>
+
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
+![minSdkVersion 16](https://img.shields.io/badge/minSdkVersion-16-red.svg?style=true)
+![compileSdkVersion 28](https://img.shields.io/badge/compileSdkVersion-28-yellow.svg?style=true)
+
+<img alt='Sample' src="https://raw.githubusercontent.com/andremion/Bikes/master/sample.png"></br>
 
 ## The sample
 Shows a map with markers in cities that have some bike sharing service.
