@@ -12,10 +12,10 @@ object Versions {
     }
 
     object Android {
-        const val buildTools = "29.0.0"
+        const val buildTools = "29.0.2"
         const val minSdk = 16
-        const val targetSdk = 28
-        const val compileSdk = 28
+        const val targetSdk = 29
+        const val compileSdk = 29
     }
 
     object Testing {

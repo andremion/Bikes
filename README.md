@@ -7,7 +7,7 @@ A sample of Unidirectional Data Flow usage.
 
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 ![minSdkVersion 16](https://img.shields.io/badge/minSdkVersion-16-red.svg?style=true)
-![compileSdkVersion 28](https://img.shields.io/badge/compileSdkVersion-28-yellow.svg?style=true)
+![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-yellow.svg?style=true)
 
 <img alt='Sample' src="https://raw.githubusercontent.com/andremion/Bikes/master/sample.png"></br>
 
