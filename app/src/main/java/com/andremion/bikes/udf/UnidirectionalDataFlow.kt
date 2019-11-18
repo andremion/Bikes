@@ -1,21 +1,27 @@
+/*
+ * Copyright (c) 2019. André Mion
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.andremion.bikes.udf
 
 import androidx.lifecycle.*
 
-/**
- * A [ViewModel] subclass that that is delegated to [UdfDispatcherImpl] to handle all the Unidirectional Data Flow.
- */
 abstract class UdfViewModel<in Action, Result, ViewState, ViewEffect>(
     private val dispatcher: UdfDispatcher<Action, ViewState, ViewEffect>
 ) : ViewModel(), UdfDispatcher<Action, ViewState, ViewEffect> by dispatcher
 
-/**
- * Processor: [Action] => [Result] / [ViewEffect]
- *
- * It receives an [Action], process some operation (fetching/saving from/to network or database) and returns an [LiveData] of [Result] that will be used by [UdfReducer].
- * Additionally it may trigger a [ViewEffect] that means that it should be emitted but not kept as state such as:
- * Showing a Toast, Navigating to another screen, etc.
- */
 abstract class UdfProcessor<in Action, Result, ViewEffect> : (Action) -> LiveData<Result> {
 
     private val _effects = MutableLiveData<ViewEffect>()
@@ -26,16 +32,8 @@ abstract class UdfProcessor<in Action, Result, ViewEffect> : (Action) -> LiveDat
     }
 }
 
-/**
- * Reducer: Current [ViewState] + [Result] => New [ViewState]
- *
- * It receives a [Result] from [UdfProcessor] and takes the current [ViewState] to produce another [ViewState].
- */
 interface UdfReducer<ViewState, Result> : (ViewState, Result) -> ViewState
 
-/**
- * Handles all the Unidirectional Data Flow.
- */
 class UdfDispatcherImpl<in Action, out Result, ViewState, ViewEffect>(
     processor: UdfProcessor<Action, Result, ViewEffect>,
     reducer: UdfReducer<ViewState, Result>,
@@ -46,15 +44,10 @@ class UdfDispatcherImpl<in Action, out Result, ViewState, ViewEffect>(
     override val states: LiveData<ViewState>
     override val effects: LiveData<ViewEffect> = processor.effects
 
-    // https://github.com/oldergod/android-architecture/blob/todo-mvi-rxjava-kotlin/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksViewModel.kt
     init {
         states = actions
             .switchMap(processor)
-            // Cache each state and pass it to the reducer to create a new state from
-            // the previous cached one and the latest result emitted from the processor.
-            // The Scan operator is used here for the caching.
             .scan(initialViewState, reducer)
-            // When a reducer just emits previous state, there's no reason to emmit it again.
             .distinctUntilChanged()
     }
 
