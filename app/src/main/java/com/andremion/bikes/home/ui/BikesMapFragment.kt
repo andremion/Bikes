@@ -87,7 +87,7 @@ class BikesMapFragment : SupportMapFragment(), OnMapReadyCallback {
 
     private fun renderLoading() {
         view?.let {
-            Snackbar.make(it, "Loading...", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(it, R.string.bikes_map_loading, Snackbar.LENGTH_SHORT).show()
         }
     }
 

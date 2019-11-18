@@ -6,6 +6,7 @@
 
     <!--Bikes Map-->
     <string name="bikes_map_location_permission_request">To find bikes nearby you, allow access fine location in App Permission Settings.</string>
+    <string name="bikes_map_loading">Loading…</string>
     <plurals name="bikes_map_station_snippet_text_bikes">
         <item quantity="one">%d bike</item>
         <item quantity="other">%d bikes</item>
