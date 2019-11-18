@@ -9,7 +9,7 @@ A sample of Unidirectional Data Flow usage.
 ![minSdkVersion 16](https://img.shields.io/badge/minSdkVersion-16-red.svg?style=true)
 ![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-yellow.svg?style=true)
 
-<img alt='Sample' src="https://raw.githubusercontent.com/andremion/Bikes/master/sample.png"></br>
+<img alt='Sample' src="https://raw.githubusercontent.com/andremion/Bikes/master/sample.png" width=300 align="right"></br>
 
 ## The sample
 Shows a map with markers in cities that have some bike sharing service.
