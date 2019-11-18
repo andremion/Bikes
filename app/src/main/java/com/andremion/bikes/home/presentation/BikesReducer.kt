@@ -9,24 +9,15 @@ class BikesReducer : UdfReducer<ViewState, Result> {
     override fun invoke(currentState: ViewState, result: Result) =
         when (result) {
             is Result.SetLoading -> currentState.copy(
-                loading = true,
-                networks = emptyList(),
-                error = null
+                loading = true
             )
             is Result.SetNetworks -> currentState.copy(
                 loading = false,
-                networks = result.networks,
-                error = null
+                networks = result.networks
             )
             is Result.SetStations -> currentState.copy(
                 loading = false,
-                stations = result.stations,
-                error = null
-            )
-            is Result.SetError -> currentState.copy(
-                loading = false,
-                networks = emptyList(),
-                error = result.error
+                stations = result.stations
             )
         }
 }

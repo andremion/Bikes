@@ -80,7 +80,6 @@ class BikesMapFragment : SupportMapFragment(), OnMapReadyCallback {
     private fun render(viewState: ViewState) {
         when {
             viewState.loading -> renderLoading()
-            viewState.error != null -> renderLoadingError(viewState.error)
             viewState.stations.isNotEmpty() -> renderStations(viewState.stations)
             else -> renderNetworks(viewState.networks)
         }
@@ -90,10 +89,6 @@ class BikesMapFragment : SupportMapFragment(), OnMapReadyCallback {
         view?.let {
             Snackbar.make(it, "Loading...", Snackbar.LENGTH_SHORT).show()
         }
-    }
-
-    private fun renderLoadingError(error: String) {
-        //TODO Render loading error
     }
 
     private fun renderStations(stations: List<Station>) {
@@ -129,10 +124,12 @@ class BikesMapFragment : SupportMapFragment(), OnMapReadyCallback {
 
     private fun trigger(effect: ViewEffect) {
         when (effect) {
-            is ShowError -> view?.let {
-                Snackbar.make(it, effect.error, Snackbar.LENGTH_LONG).show()
-            }
+            is ShowError -> triggerError(effect.error)
         }
+    }
+
+    private fun triggerError(error: String) = view?.let {
+        Snackbar.make(it, error, Snackbar.LENGTH_LONG).show()
     }
 
     private fun Station.buildMarkerSnippet() = resources.getQuantityString(

@@ -14,7 +14,6 @@ object BikesContract {
         object SetLoading : Result()
         data class SetNetworks(val networks: List<Network>) : Result()
         data class SetStations(val stations: List<Station>) : Result()
-        data class SetError(val error: String?) : Result()
     }
 
     sealed class ViewEffect {
@@ -24,15 +23,13 @@ object BikesContract {
     data class ViewState(
         val loading: Boolean,
         val networks: List<Network>,
-        val stations: List<Station>,
-        val error: String?
+        val stations: List<Station>
     ) {
         companion object {
             val INITIAL = ViewState(
                 loading = false,
                 networks = emptyList(),
-                stations = emptyList(),
-                error = null
+                stations = emptyList()
             )
         }
     }

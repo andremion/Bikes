@@ -24,17 +24,16 @@ class BikesProcessor(
             val networks = bikesRepository.findNetworks()
             emit(Result.SetNetworks(networks))
         } catch (e: Exception) {
-            emit(Result.SetError(e.message))
             trigger(ViewEffect.ShowError(e.message ?: ""))
         }
     }
 
     private fun getNetworkById(id: String): LiveData<Result> = liveData {
+        emit(Result.SetLoading)
         try {
             val network = bikesRepository.getNetworkById(id)
             emit(Result.SetStations(network.stations))
         } catch (e: Exception) {
-            emit(Result.SetError(e.message))
             trigger(ViewEffect.ShowError(e.message ?: ""))
         }
     }
