@@ -60,11 +60,11 @@ Bike data are fetched from [CityBikes] API, a project that provides bike sharing
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[UdfViewModel]: app/src/main/java/com/andremion/bikes/udf/UnidirectionalDataFlow.kt#L5
-[UdfDispatcher]: app/src/main/java/com/andremion/bikes/udf/UnidirectionalDataFlow.kt#43
-[UdfProcessor]: app/src/main/java/com/andremion/bikes/udf/UnidirectionalDataFlow.kt#L9
-[UdfReducer]: app/src/main/java/com/andremion/bikes/udf/UnidirectionalDataFlow.kt#L19
-[UdfDispatcherImpl]: app/src/main/java/com/andremion/bikes/udf/UnidirectionalDataFlow.kt#21
+[UdfViewModel]: app/src/main/java/com/andremion/bikes/udf/UdfViewModel.kt
+[UdfDispatcher]: app/src/main/java/com/andremion/bikes/udf/UdfDispatcher.kt
+[UdfProcessor]: app/src/main/java/com/andremion/bikes/udf/UdfProcessor.kt
+[UdfReducer]: app/src/main/java/com/andremion/bikes/udf/UdfReducer.kt
+[UdfDispatcherImpl]: app/src/main/java/com/andremion/bikes/udf/UdfDispatcherImpl.kt
 [ViewModel]: https://developer.android.com/topic/libraries/architecture/viewmodel
 [LiveData]: https://developer.android.com/topic/libraries/architecture/livedata
 [Snackbar]: https://developer.android.com/reference/android/support/design/widget/Snackbar

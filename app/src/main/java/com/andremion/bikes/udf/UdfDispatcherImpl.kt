@@ -17,22 +17,7 @@
 package com.andremion.bikes.udf
 
 import androidx.lifecycle.*
-
-abstract class UdfViewModel<in Action, Result, ViewState, ViewEffect>(
-    private val dispatcher: UdfDispatcher<Action, ViewState, ViewEffect>
-) : ViewModel(), UdfDispatcher<Action, ViewState, ViewEffect> by dispatcher
-
-abstract class UdfProcessor<in Action, Result, ViewEffect> : (Action) -> LiveData<Result> {
-
-    private val _effects = MutableLiveData<ViewEffect>()
-    val effects: LiveData<ViewEffect> = _effects
-
-    protected fun trigger(vararg effects: ViewEffect) {
-        effects.forEach { _effects.value = it }
-    }
-}
-
-interface UdfReducer<ViewState, Result> : (ViewState, Result) -> ViewState
+import com.andremion.bikes.udf.utils.scan
 
 class UdfDispatcherImpl<in Action, out Result, ViewState, ViewEffect>(
     processor: UdfProcessor<Action, Result, ViewEffect>,
@@ -54,10 +39,4 @@ class UdfDispatcherImpl<in Action, out Result, ViewState, ViewEffect>(
     override fun submit(vararg actions: Action) {
         actions.forEach { this.actions.value = it }
     }
-}
-
-interface UdfDispatcher<in Action, ViewState, ViewEffect> {
-    val states: LiveData<ViewState>
-    val effects: LiveData<ViewEffect>
-    fun submit(vararg actions: Action)
 }

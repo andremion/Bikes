@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-package androidx.lifecycle
+package com.andremion.bikes.udf
 
-fun <T, R> LiveData<T>.scan(initialValue: R, accumulator: (R, T) -> R): LiveData<R> = MediatorLiveData<R>().apply {
-    value = initialValue
-    addSource(this@scan) { emittedValue ->
-        value?.let { accumulatedValue ->
-            value = accumulator(accumulatedValue, emittedValue)
-        }
-    }
-}
+interface UdfReducer<ViewState, Result> : (ViewState, Result) -> ViewState
